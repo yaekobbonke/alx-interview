@@ -1,5 +1,7 @@
 #n = int(input("Enter the number of rows: "))
 def pascal_triangle(n):
+    if n <=0:
+        return []
     triangle = []
     for r in range(n):
         inner_row = []
@@ -12,9 +14,4 @@ def pascal_triangle(n):
                 m = upper_row_left + upper_row_right
                 inner_row.append(m)
         triangle.append(inner_row)
-    return triangle
-n = 5
-if n <= 0:
-    triangle = []
-else:
-    triangle = pascal_triangle(n)
+    return triangle  
