@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def is_safe(board, row, col, N):
     """
     Check if placing a queen at the given position
@@ -32,14 +33,18 @@ def is_safe(board, row, col, N):
 
 def solve_nqueens(N):
     """
-    Solve the N-queens problem and return a list of all possible solutions.
+    Solve the N-queens problem and
+    return a list of all possible solutions.
 
     Args:
-        N (int): The size of the chessboard and the number of queens.
+        N (int): The size of the chessboard
+        and the number of queens.
 
     Returns:
-        list: A list of solutions, where each solution is represented as a list
-              of strings, with each string representing a row on the chessboard.
+        list: A list of solutions, where each
+        solution is represented as a list
+              of strings, with each string
+              representing a row on the chessboard.
 
     """
     board = [['.' for _ in range(N)] for _ in range(N)]
@@ -50,12 +55,14 @@ def solve_nqueens(N):
 
 def solve_util(board, col, N, solutions):
     """
-    A recursive utility function to solve the N-queens problem.
+    A recursive utility function
+    to solve the N-queens problem.
 
     Args:
         board (list): The current state of the chessboard.
         col (int): The current column being considered.
-        N (int): The size of the chessboard and the number of queens.
+        N (int): The size of the chessboard
+        and the number of queens.
         solutions (list): A list to store the solutions.
 
     """
