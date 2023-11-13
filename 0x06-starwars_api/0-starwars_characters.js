@@ -1,7 +1,7 @@
 #!/usr/bin/node
-const axios = require('axios');
+const axios = require("axios");
 
-function getMovieCharacters(movieId) {
+function getMovieCharacters (movieId) {
   const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
   axios.get(apiUrl)
@@ -28,7 +28,7 @@ function getMovieCharacters(movieId) {
 const movieId = process.argv[2];
 
 if (!movieId) {
-  console.log('Please provide a movie ID as a command-line argument.');
+  console.log("Please provide a movie ID as a command-line argument.");
 } else {
   getMovieCharacters(movieId);
 }
