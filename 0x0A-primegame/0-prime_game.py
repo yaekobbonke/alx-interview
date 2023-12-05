@@ -3,56 +3,43 @@
 Prime Game
 """
 
-
-def generate_primes(n):
-    """
-    generate primes
-    """
-    primes = []
-    sieve = [True] * (n + 1)
-    sieve[0] = sieve[1] = False
-
-    for p in range(2, int(n ** 0.5) + 1):
-        if sieve[p]:
-            primes.append(p)
-            for i in range(p * p, n + 1, p):
-                sieve[i] = False
-
-    for p in range(int(n ** 0.5) + 1, n + 1):
-        if sieve[p]:
-            primes.append(p)
-
-    return primes
-
-
 def isWinner(x, nums):
-    winner = None
-    max_wins = 0
+    """is winner"""
 
-    for i in range(x):
-        n = nums[i]
-        primes = generate_primes(n)
-        current_player = 0  # 0 for Maria, 1 for Ben
-        can_move = True
 
-        while can_move:
-            can_move = False
-            for prime in primes:
-                if prime <= n:
-                    n -= prime
-                    can_move = True
-                    current_player = 1 - current_player  # Switch players
-                    break
+    def isPrime(num):
+        """is prime"""
+        if num < 2:
+            return False
+        for i in range(2, int(num ** 0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
 
-        if current_player == 0:
-            wins = nums.count(nums[i])
-            if wins > max_wins:
-                max_wins = wins
-                winner = "Maria"
-        else:
-            wins = nums.count(nums[i])
-            if wins > max_wins:
-                max_wins = wins
-                winner = "Ben"
 
-    return winner
+    def playGame(n):
+        """play game"""
+        primes = [num for num in range(2, n+1) if isPrime(num)]
+        turn = 0  # 0 for Maria, 1 for Ben
+        while n > 1:
+            prime = next((p for p in primes if p <= n), None)
+            if prime is None:
+                break
+            n -= prime
+            primes = [num for num in primes if num % prime != 0]
+            turn = 1 - turn
+        return turn
+
+    wins = {'Maria': 0, 'Ben': 0}
+    for n in nums:
+        winner = playGame(n)
+        if winner is not None:
+            wins['Maria' if winner == 0 else 'Ben'] += 1
+
+    max_wins = max(wins.values())
+    if wins['Maria'] == wins['Ben']:
+        return None
+    elif wins['Maria'] > wins['Ben']:
+        return 'Maria'
+    else:
+        return 'Ben'
