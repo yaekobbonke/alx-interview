@@ -3,9 +3,9 @@
 Prime Game
 """
 
+
 def isWinner(x, nums):
     """is winner"""
-
 
     def isPrime(num):
         """is prime"""
@@ -15,7 +15,6 @@ def isWinner(x, nums):
             if num % i == 0:
                 return False
         return True
-
 
     def playGame(n):
         """play game"""
